@@ -1,18 +1,6 @@
--- Rank country origins of bands by number of fans
+-- This SQL script select origin column, and sum of fans column as nb_fans, grouped by origin and ordered by nb_fans descending from 'metal_bands' table.
 
-CREATE TEMPORARY TABLE temp_band_fans AS
-SELECT
-    origin,
-    SUM(nb_fans) AS total_fans
-FROM
-    metal_bands
-GROUP BY
-    origin;
-
-SELECT
-    origin,
-    total_fans AS nb_fans
-FROM
-    temp_band_fans
-ORDER BY
-    total_fans DESC;
+SELECT origin, SUM(fans) AS nb_fans
+    FROM metal_bands
+    GROUP BY origin
+    ORDER BY nb_fans DESC;
